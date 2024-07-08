@@ -2,7 +2,7 @@
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/client';
 import { GET_COUNTRY } from '../../requetes/queries/country.queries';
-import { Country } from '../../types/country';
+import { Country } from '../../types/country.d';
 
 
 const CountryDetails = () => {

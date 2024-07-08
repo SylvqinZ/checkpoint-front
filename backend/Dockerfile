@@ -5,10 +5,11 @@ WORKDIR /app
 COPY package*.json ./
 
 RUN npm i
+RUN apk add curl
 
 COPY src ./src
 COPY tsconfig.json ./tsconfig.json
-RUN apk add curl
+
 ARG NEXT_PUBLIC_GRAPHQL_API_URL
 ENV NEXT_PUBLIC_GRAPHQL_API_URL ${NEXT_PUBLIC_GRAPHQL_API_URL}
 
