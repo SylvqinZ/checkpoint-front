@@ -10,6 +10,7 @@ COPY src ./src
 COPY public ./public
 COPY tsconfig.json ./tsconfig.json
 COPY next-env.d.ts ./next-env.d.ts
+COPY codegen.yml codegen.yml
 COPY *.config.js ./
 
 ARG NEXT_PUBLIC_GRAPHQL_API_URL
