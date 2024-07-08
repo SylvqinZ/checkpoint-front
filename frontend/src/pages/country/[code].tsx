@@ -26,9 +26,10 @@ const CountryDetails = () => {
     <div className="country-details">
       {country ? (
         <div>
-          <h1>{country.name}</h1>
+          <h1>Country</h1>
+          <p>{country.name} ({country.code})</p>
           <p>Emoji: {country.emoji}</p>
-          <p>Code: {country.code}</p>
+          
           {country.continent && <p>Continent: {country.continent.name}</p>}
          
         </div>
