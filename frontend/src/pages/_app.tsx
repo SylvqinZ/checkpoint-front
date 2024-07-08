@@ -1,10 +1,13 @@
 import "@/styles/globals.css";
 import type { AppProps } from "next/app";
-import dynamic from "next/dynamic";
+import client from "../lib/apolloClient";
+import { ApolloProvider } from "@apollo/client";
 
 function App({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <ApolloProvider client={client}>
+      <Component {...pageProps} />
+    </ApolloProvider>
+  );
 }
-
-// Disabling SSR
-export default dynamic(() => Promise.resolve(App), { ssr: false });
+export default App

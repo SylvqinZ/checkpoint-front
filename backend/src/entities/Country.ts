@@ -53,6 +53,6 @@ export class NewCountryInput {
   @MaxLength(4)
   emoji: string;
 
-  @Field(() => ObjectId, { nullable: true })
-  continent?: ObjectId;
+  @Field(() => Number, { nullable: true })
+  continent?: Number;
 }
