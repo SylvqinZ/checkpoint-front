@@ -3,9 +3,12 @@ export interface Continent {
 }
 
 export interface Country {
-  id: string;
+  id: number;
+  code: string;
   name: string;
   emoji: string;
-  code: string;
-  continent: Continent;
+  continent?: {
+    id: number;
+    name: string;
+  };
 }

@@ -1,13 +1,14 @@
+// pages/index.tsx
 import { useQuery } from '@apollo/client';
-import { GET_COUNTRIES } from '../requetes/queries/country.queries';
+import { GetCountriesDocument, GetCountriesQuery } from '@/graphql/generated/schema';
 import CountryForm from '../components/CountryForm';
 import CountryList from '../components/CountryList';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import { Country } from '../types/country.d';
+
 
 const Home = () => {
-  const { data, loading, error } = useQuery<{ countries: Country[] }>(GET_COUNTRIES);
+  const { data, loading, error } = useQuery<GetCountriesQuery>(GetCountriesDocument);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -35,4 +36,3 @@ const Home = () => {
 };
 
 export default Home;
-
