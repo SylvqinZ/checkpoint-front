@@ -3,29 +3,32 @@ import { useMutation, useQuery } from "@apollo/client";
 import { GET_COUNTRIES } from "../requetes/queries/country.queries";
 import { ADD_COUNTRY } from "../requetes/mutations/country.mutations";
 import { GET_CONTINENTS } from "../requetes/queries/continent.queries";
+import { useGetCountriesQuery, useAddCountryMutation, useGetContinentsQuery , GetCountriesDocument} from '../graphql/generated/schema';
+
+
 
 const CountryForm = () => {
   const [name, setName] = useState("");
   const [emoji, setEmoji] = useState("");
   const [code, setCode] = useState("");
-  const [continent, setContinent] = useState("");
+  const [continent, setContinent] = useState<number | undefined>(undefined);
 
-  const { loading, error, data } = useQuery(GET_CONTINENTS);
+  const { loading, error, data } = useGetContinentsQuery();
 
-  const [addCountry] = useMutation(ADD_COUNTRY, {
-    refetchQueries: [{ query: GET_COUNTRIES }],
+  const [addCountry] = useAddCountryMutation({
+    refetchQueries: [{ query: GetCountriesDocument }],
   });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       await addCountry({
-        variables: { name, emoji, code, continent: parseInt(continent)}, 
+        variables: { name, emoji, code, continent }, 
       });
       setName("");
       setEmoji("");
       setCode("");
-      setContinent("");
+      setContinent(undefined);
     } catch (error) {
       console.error("Error adding country:", error);
      
@@ -72,11 +75,11 @@ const CountryForm = () => {
         <select
           id="continent"
           value={continent}
-          onChange={(e) => setContinent(e.target.value)}
+          onChange={(e) => setContinent(parseInt(e.target.value))}
           required
         >
           <option value="">Select a continent</option>
-          {data.continents.map((continent: any) => (
+          {data?.continents.map((continent) => (
             <option key={continent.id} value={continent.id}>
               {continent.name}
             </option>
