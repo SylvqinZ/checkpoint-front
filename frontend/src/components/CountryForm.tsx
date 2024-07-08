@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import { useMutation, useQuery } from "@apollo/client";
-import { GET_COUNTRIES } from "../requetes/queries/country.queries";
-import { ADD_COUNTRY } from "../requetes/mutations/country.mutations";
-import { GET_CONTINENTS } from "../requetes/queries/continent.queries";
-import { useGetCountriesQuery, useAddCountryMutation, useGetContinentsQuery , GetCountriesDocument} from '../graphql/generated/schema';
-
+import { useAddCountryMutation, useGetContinentsQuery , GetCountriesDocument} from '../graphql/generated/schema';
 
 
 const CountryForm = () => {
